@@ -1,14 +1,31 @@
 import logo from '../assets/images/logo.svg'
 import {  Link } from "react-router-dom";
 import { Bars3Icon } from '@heroicons/react/24/solid'
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context, ContextType  } from '../ContextProvider';
 
 
 export function Header () {
 
   const {isVisible, setIsVisible} = useContext(Context) as ContextType
+  
+  // closes nav menu on screen resize if still open
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth > 640) {
+      setIsVisible(true)
+      } else if(window.innerWidth < 640){
+        setIsVisible(false)
+      }
+    }
+    
+    window.addEventListener('resize', handleResize)
 
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  },[])
+  
   return (
         <header className='sm:flex  sm:items-center p-8 pb-0 sm:pb-0 sm:p-12 lg:p-20'>
 
@@ -22,7 +39,8 @@ export function Header () {
           </div>
           
           {/* nav */}
-          <div className={`${isVisible ? "block" : "hidden"}  bg-slate-700 text-slate-100 rounded-lg h-70 font-bold text-2xl sm:flex sm:justify-between w-full sm:items-center sm:font-medium sm:text-base sm:bg-transparent sm:text-slate-500 sm:pl-5 `}>
+          <div className={`${isVisible ? "block" : "hidden"}  
+          bg-slate-700 text-slate-100 rounded-lg h-70 font-bold text-2xl sm:flex sm:justify-between w-full sm:items-center sm:font-medium sm:text-base sm:bg-transparent sm:text-slate-500 sm:pl-5 `}>
 
             <div className='flex flex-col items-center  gap-3 pt-3 sm:pt-0 sm:flex-row  sm:items-center'>  
               <Link to='/features'>Features</Link>

@@ -25,8 +25,8 @@ export function LinkCard ({data}:  Props) {
           <p className='text-slate-700 font-semibold p-3'>{originalLink}</p>
           <hr className='sm:hidden'/>
           <p className='p-3 text-teal-400 font-semibold sm:ml-auto'>{shortLink}</p>
-          <button onClick={copyText} className={`m-3 py-2  rounded-lg text-slate-100 text-lg font-bold sm:px-4 ${isCopied ? "bg-slate-700 " : " bg-teal-400 hover:bg-teal-300"}`}>
-          {isCopied ? 'Copied!' : 'Copy' }</button> 
+          <button onClick={copyText} className={`m-3 py-2  rounded-lg text-slate-100 text-lg font-bold sm:w-24 ${isCopied ? "bg-slate-700 " : " bg-teal-400 hover:bg-teal-300"}`}>
+          {isCopied ? 'Copied!' : 'Copy' } </button> 
        </div>
   )
 }
