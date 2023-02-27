@@ -21,11 +21,11 @@ export function LinkCard ({data}:  Props) {
   }
 
   return (
-        <div className='bg-slate-100 flex flex-col mb-2 mt-2 m-8 sm:m-12 sm:my-2 lg:mx-20 lg:my-2'> 
+        <div className='bg-slate-100 flex flex-col mb-2 mt-2 m-8 sm:flex-row sm:items-center sm:m-12 sm:my-2 lg:mx-20 lg:my-2'> 
           <p className='text-slate-700 font-semibold p-3'>{originalLink}</p>
-          <hr />
-          <p className='p-3 text-teal-400 font-semibold'>{shortLink}</p>
-          <button onClick={copyText} className={`m-3 py-2  rounded-lg text-slate-100 text-lg font-bold ${isCopied ? "bg-slate-700 " : " bg-teal-400 hover:bg-teal-300"}`}>
+          <hr className='sm:hidden'/>
+          <p className='p-3 text-teal-400 font-semibold sm:ml-auto'>{shortLink}</p>
+          <button onClick={copyText} className={`m-3 py-2  rounded-lg text-slate-100 text-lg font-bold sm:px-4 ${isCopied ? "bg-slate-700 " : " bg-teal-400 hover:bg-teal-300"}`}>
           {isCopied ? 'Copied!' : 'Copy' }</button> 
        </div>
   )

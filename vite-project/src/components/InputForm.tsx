@@ -13,7 +13,7 @@ export function InputForm ({setLinkData}: Props) {
   const [isError, setIsError] = useState(false);
 
   // this function fetches shortlink from api using the input, then saves that link to setInput hook; provides error if fails to fetch from api
-  const getLink = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const getLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
 
     fetch(`https://api.shrtco.de/v2/shorten?url=${input}`)
@@ -21,7 +21,7 @@ export function InputForm ({setLinkData}: Props) {
             if (response.ok) {
                 return response.json();
             } else {
-                throw 'error' 
+              throw 'error'
             }
           }) 
       .then((data) => {
@@ -37,11 +37,9 @@ export function InputForm ({setLinkData}: Props) {
           })
       .catch((error) => {
           console.log(error)
-          alert(error)
           setIsError(true)
         })
   }
-
 
   return (
  
@@ -63,3 +61,4 @@ export function InputForm ({setLinkData}: Props) {
 
   )
 }
+
