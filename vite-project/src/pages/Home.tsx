@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BottomBanner } from "../components/BottomBanner"
 import { HeroBanner } from "../components/HeroBanner"
 import { InputForm } from "../components/InputForm"
@@ -7,7 +7,17 @@ import { StatisticsSection } from "../components/StatisticsSection"
 
 function Home() {
 
-  const [linkData, setLinkData] = useState<Link[]>([])
+  const [linkData, setLinkData] = useState<Link[]> (() => {
+    // getting stored value
+    const saved = localStorage.getItem("links") || "[]";
+    const initialValue = JSON.parse(saved);
+    return initialValue || "[]";
+  })
+
+  useEffect(() => {
+    localStorage.setItem('links', JSON.stringify(linkData));
+    console.log(linkData)
+  }, [linkData]);
  
   return ( 
       <div >
